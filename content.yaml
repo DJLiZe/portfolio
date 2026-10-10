@@ -1,0 +1,59 @@
+# content.yaml - a list of every piece in your portfolio.
+#
+# This file is NOTES FOR YOU (and anyone reading your repo). The website does
+# not read it - the pages in docs/ are plain HTML files you edit by hand.
+# Keeping this list up to date is a good habit: it shows, in one place, where
+# each original lives and where its web version is published.
+#
+# Each piece starts with a "-" and has the same fields:
+#   title        - the name of the piece
+#   type         - art or writing
+#   date         - when you made it, written YYYY-MM-DD
+#   description  - one sentence about it
+#   source       - the original, full-quality file (kept in git, not shown on the site)
+#   published    - the web page (and image, for art) that the site shows
+#
+# To add a piece: copy one block, paste it at the bottom, and change the values.
+
+- title: Sunset (EXAMPLE)
+  type: art
+  date: 2026-09-01
+  description: Placeholder artwork - replace with your own.
+  source: source/art/example-sunset.png
+  published:
+    page: docs/art-sunset.html
+    image: docs/assets/img/example-sunset.jpg
+
+- title: City at Night (EXAMPLE)
+  type: art
+  date: 2026-09-15
+  description: Placeholder artwork - replace with your own.
+  source: source/art/example-city.png
+  published:
+    page: docs/art-city.html
+    image: docs/assets/img/example-city.jpg
+
+- title: Mountains (EXAMPLE)
+  type: art
+  date: 2026-10-01
+  description: Placeholder artwork - replace with your own.
+  source: source/art/example-mountains.png
+  published:
+    page: docs/art-mountains.html
+    image: docs/assets/img/example-mountains.jpg
+
+- title: Morning Bus (EXAMPLE)
+  type: writing
+  date: 2026-09-10
+  description: Placeholder poem - replace with your own.
+  source: source/writing/example-poem.md
+  published:
+    page: docs/writing-morning-bus.html
+
+- title: Why I Draw (EXAMPLE)
+  type: writing
+  date: 2026-09-20
+  description: Placeholder essay excerpt - replace with your own.
+  source: source/writing/example-essay.md
+  published:
+    page: docs/writing-why-i-draw.html

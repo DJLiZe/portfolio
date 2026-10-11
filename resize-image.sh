@@ -27,9 +27,9 @@
 # Stop right away if any command fails, instead of carrying on confused.
 set -e
 
-# The longest side of the web copy, in pixels. 1600 looks sharp on most
+# The longest side of the web copy, in pixels. 1200 looks sharp on most
 # screens and still loads quickly. Make it smaller for even faster pages.
-MAX_SIZE=1600
+MAX_SIZE=1200
 
 # JPEG quality from 0 (tiny, ugly) to 100 (huge, perfect). 80 is a good balance.
 QUALITY=80

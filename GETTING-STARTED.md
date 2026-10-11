@@ -105,14 +105,14 @@ this folder". `--exclude .git` skips the starter kit's own hidden git history,
 so your repo starts fresh with your history.)
 
 Check it worked. You should see `README.md`, `GETTING-STARTED.md`,
-`_config.yml`, `index.html`, `source`, and the other files:
+`_config.yml`, `index.html`, `assets`, and the other files:
 
 ```sh
 ls -a
 ```
 
 (`-a` shows everything, including the folders whose names start with `_` or
-`.`, like `_art` and `_layouts`.)
+`.`, like `_data` and `_layouts`.)
 
 ## 5. Your first commit and push
 
@@ -193,7 +193,7 @@ Pages Source says **Deploy from a branch**, with **main** and **/ (root)**.
 
 From now on, every change follows the same four steps:
 
-1. **Change your files:** a new file in `_art/`, or a setting in `_config.yml`.
+1. **Change your files:** a new piece in `_data/art.yml`, or a setting in `_config.yml`.
 2. **Stage and commit:** `git add .` then `git commit -m "<what you did>"`.
 3. **Push:** `git push`.
 4. **Wait a minute or two,** then reload your site. GitHub rebuilds it for
@@ -201,8 +201,9 @@ From now on, every change follows the same four steps:
 
 You never edit the website's HTML by hand. (If a build fails, you'll get
 an email from GitHub and a red X in the **Actions** tab. Click it to read the
-error. It usually names the file and line to fix, often a missing `---` or a
-`:` in a title that needs "quotes". Fix it, then commit and push again.)
+error. It usually names the file and line to fix, often a line in
+`_data/art.yml` that isn't indented like the others, or a `:` in a title that
+needs "quotes". Fix it, then commit and push again.)
 
 First, put your name on it. Open `_config.yml` in a text editor (TextEdit
 works, but a free code editor like [VS Code](https://code.visualstudio.com/)
@@ -217,25 +218,36 @@ git push
 
 Reload your site after a minute or two to see the change.
 
-### What's front matter?
+### Where your pieces are listed
 
-Every art piece is one small file in `_art/`. Between two lines of three
-dashes are the piece's details. That's called **front matter**:
+All your art pieces are listed in one file: `_data/art.yml`. Open it and
+you'll see the three example pieces. Each piece is one **entry** in the list,
+and looks like this:
 
+```yaml
+- title: Morning Bus
+  date: 2026-09-10
+  category: School Projects
+  description: A pencil sketch of the ride to school.
+  image: /assets/img/morning-bus.jpg
+  alt: A pencil sketch of a yellow school bus at a stop, kids lining up.
 ```
----
-title: Morning Bus
-date: 2026-09-10
-category: School Projects
-description: A pencil sketch of the ride to school.
-image: /assets/img/morning-bus.jpg
-alt: A pencil sketch of a yellow school bus at a stop, kids lining up.
----
-```
 
-Each line is a name, a colon and a space, then the value. Dates are written
-year-month-day. If a value has a colon and a space in it (like
-`Part 1: Home`), wrap the whole value in "double quotes".
+A few rules, and that's all there is to it:
+
+- Each entry starts with a `-` (a dash and a space) at the very left edge.
+  That dash means "a new piece starts here".
+- The other lines of the entry are indented by **two spaces**, so they line
+  up with `title`. Use spaces, not the Tab key.
+- Each line is a name, a colon and a space, then the value. Dates are written
+  year-month-day.
+- If a value has a colon and a space in it (like `Part 1: Home`), wrap the
+  whole value in "double quotes".
+- Leave a blank line between entries if you like. It makes the file easier
+  to read, and Jekyll doesn't mind.
+
+The order of the entries doesn't matter: the home page always shows the
+newest piece first.
 
 ### Adding a new art piece
 
@@ -243,30 +255,37 @@ Art needs one extra step, because big image files make websites slow: you
 make a small web copy first. It's one command.
 
 1. **Save the original** in `source/art/`, full quality, for example
-   `source/art/self-portrait.png`.
+   `source/art/self-portrait.png`. (The first time, make the folder with
+   `mkdir -p source/art`. Git ignores it, so it isn't in a fresh copy.)
 2. **Make the web copy:**
    ```sh
    ./resize-image.sh source/art/self-portrait.png
    ```
-   That makes `assets/img/self-portrait.jpg`, and prints the front matter for
-   the next step.
-3. **Make a new file** in `_art/`, for example `_art/self-portrait.md`, and
-   paste in what the script printed. Change the values. `image:` is the web
-   copy the script made. `alt:` is a short description of the picture for
-   people who can't see it.
+   That makes `assets/img/self-portrait.jpg`, and prints the lines for the
+   next step, something like:
+   ```yaml
+   - title: My New Piece
+     date: 2026-10-11
+     category: School Projects
+     description: One sentence about it.
+     image: /assets/img/self-portrait.jpg
+     alt: A short description of the picture, for people who can't see it.
+   ```
+3. **Add it to the list:** open `_data/art.yml`, go to the very bottom, and
+   paste in what the script printed (the `-` at the left edge, the other
+   lines indented by two spaces, just like the entries above it). Then change
+   the values. `image:` is the web copy the script made: leave it as it is.
+   `alt:` is a short description of the picture for people who can't see it.
 
-   Then add one more line under `date:` to say which section of the home
-   page the piece goes in, for example:
-   ```
-   category: Cards
-   ```
-   Use any name you like (`School Projects`, `Cards`, `Sketchbook`...). Every
-   piece with the same category shows up together under that heading, so
-   spell it the same way each time (capital letters count: `cards` and
-   `Cards` would be two different sections). If you leave `category:` out,
-   the piece still shows up, in a section called **Other** at the bottom.
-4. **Commit and push** (this sends the original, the web copy, and the new
-   file together):
+   `category:` says which section of the home page the piece goes in. Use any
+   name you like (`School Projects`, `Cards`, `Sketchbook`...). Every piece
+   with the same category shows up together under that heading, so spell it
+   the same way each time (capital letters count: `cards` and `Cards` would
+   be two different sections). If you delete the `category:` line, the piece
+   still shows up, in a section called **Other** at the bottom.
+4. **Commit and push** (this sends the web copy and the updated list
+   together; the original in `source/art/` stays on your Mac, because git
+   ignores that folder):
    ```sh
    git add .
    git commit -m "Add self-portrait"
@@ -274,14 +293,14 @@ make a small web copy first. It's one command.
    ```
 
 The piece shows up on the home page by itself, under its category's heading,
-with its image, title, date, and description. There's no separate page for each piece: the home page is
-the whole site, and it shows everything.
+with its image, title, date, and description. There's no separate page for
+each piece: the home page is the whole site, and it shows everything.
 
 ### What about writing?
 
 **Not for now.** This version of the site is art only, to keep your first
 site simple. A writing section (poems, essays, stories) can be added back
-later if you want one: it's a new folder next to `_art/`, a line in
+later if you want one: it's a new `_writing/` folder, a line in
 `_config.yml`, and a section in `index.html`.
 
 **Bringing in lots of existing art at once?** Put all the originals in a
@@ -293,8 +312,8 @@ folder, then run:
 ```
 
 It runs `resize-image.sh` on each image (.png, .jpg, .jpeg, .heic) and prints
-the front matter for each one, so you can make the `_art/` files from steps
-3 and 4. For adding one new piece, `resize-image.sh` is all you need.
+the lines for each one. Paste them all at the bottom of `_data/art.yml`,
+change the values, then commit and push, just like steps 3 and 4. For adding one new piece, `resize-image.sh` is all you need.
 
 ### Changing the colors
 
@@ -332,7 +351,7 @@ The home page is `index.html`, the only page on the site. The frame around it
 (the header with your name, and the footer) is `_layouts/default.html`, and
 the box drawn for each art piece is `_includes/card-art.html`. Words in
 `{{ double braces }}` are blanks Jekyll fills in from `_config.yml` and from
-each piece's front matter. Fonts and layout are in `assets/css/style.css`.
+each piece's entry in `_data/art.yml`. Fonts and layout are in `assets/css/style.css`.
 
 ### Previewing before you push (optional)
 
@@ -343,9 +362,10 @@ some setup, so skip it for now.
 
 ### Removing the examples
 
-When you have your own pieces, delete the example files: everything named
-`example-...` in `_art/`, `assets/img/`, and `source/art/`. Then commit and
-push. They disappear from the home page on the next build. Don't
+When you have your own pieces, remove the examples: delete the three
+`(EXAMPLE)` entries from `_data/art.yml` (from each `- title:` line down to
+its `alt:` line), and delete the files named `example-...` in `assets/img/`.
+Then commit and push. They disappear from the home page on the next build. Don't
 worry, git still has them in your history if you ever want them back.
 
 ---
@@ -353,14 +373,18 @@ worry, git still has them in your history if you ever want them back.
 ## How this template is put together (and why)
 
 - **Two copies of every artwork.** The full-quality original lives in
-  `source/art/`, safely versioned in git. The website only shows the smaller
-  copy in `assets/img/`, so pages load fast. Your repo is public, so the
-  originals can still be downloaded from GitHub. Keep anything private out of
-  this repo.
+  `source/art/`, **on your Mac only**. `source/` is listed in `.gitignore`, so
+  git never saves it and it is never uploaded to GitHub. The smaller,
+  compressed copy in `assets/img/` is what the website shows (so pages load
+  fast), and that copy is what git saves and GitHub backs up. **Git and GitHub
+  don't back up your originals**, so keep your own copy of `source/` somewhere
+  safe, like iCloud Drive, Google Drive, or an external disk. Your repo is
+  public, so anything that is pushed (including the web copies) can be
+  downloaded by anyone. Keep anything private out of it.
 - **The website is built, not hand-written.** You keep the real things (your
   pieces and `_config.yml`) in git. Jekyll, built into GitHub Pages, turns
-  them into the website on every push. So adding a piece is one new file, and
-  the site always matches what's in `_art/`. The finished
+  them into the website on every push. So adding a piece is a few new lines
+  in one file, and the site always matches what's in `_data/art.yml`. The finished
   site is never saved in git, because it can always be rebuilt.
 - **Only images need a manual step.** GitHub's builder can't resize images,
   so `resize-image.sh` does that once per new piece, on your Mac. Everything
@@ -378,8 +402,8 @@ worry, git still has them in your history if you ever want them back.
   `source/` and the guides are left out on purpose (see `exclude:` in
   `_config.yml`).
 - **Very large files.** GitHub warns about files over 50 MB and rejects files
-  over 100 MB. Most art scans and photos are well under that. If yours aren't,
-  save a slightly smaller "master" copy in `source/`.
+  over 100 MB. Your originals in `source/` are never pushed, so their size
+  doesn't matter. The web copies in `assets/img/` are always small.
 
 ## Words you'll see
 
@@ -394,5 +418,5 @@ worry, git still has them in your history if you ever want them back.
 | branch | A line of history. You only need `main` for now. |
 | GitHub Pages | GitHub's free website hosting. |
 | Jekyll | The website builder built into GitHub Pages. It turns your files into web pages every time you push. |
-| front matter | The lines between two `---` at the top of a file in `_art/`: the piece's title, date, category, image, and other details. |
+| entry | One piece in the list in `_data/art.yml`: a `- title:` line and the indented lines under it (date, category, image, and other details). |
 | hex color | A color written as `#` plus six letters or digits, like `#b5482a`. Any color picker on the web shows them. |

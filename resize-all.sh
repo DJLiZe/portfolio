@@ -14,8 +14,8 @@
 #   ./resize-all.sh                       uses source/art/
 #   ./resize-all.sh source/art/batch1/    uses a folder you choose
 #
-#   For each image it makes a copy in assets/img/ and prints the front matter
-#   for its _art/ file, just like resize-image.sh does.
+#   For each image it makes a copy in assets/img/ and prints the lines to
+#   paste into _data/art.yml, just like resize-image.sh does.
 #
 # WHAT COUNTS AS AN IMAGE
 #   Files ending in .png, .jpg, .jpeg or .heic (capital letters are fine too).

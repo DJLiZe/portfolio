@@ -4,8 +4,11 @@
 #
 # WHY THIS EXISTS
 #   Your original art in source/art/ stays at full quality: that's the "real
-#   thing", safely saved in git. Big originals load slowly on a website,
-#   though, so the website shows a smaller, compressed copy from assets/img/.
+#   thing". It stays on your Mac only: source/ is listed in .gitignore, so git
+#   never saves it or sends it to GitHub. Keep your own backup of it (iCloud
+#   Drive, Google Drive, an external disk...). Big originals load slowly on a
+#   website anyway, so the website shows a smaller, compressed copy from
+#   assets/img/, and that copy is what git saves and GitHub publishes.
 #   This script makes that copy for you. It's the one step GitHub can't do for
 #   you: run it once each time you add a new piece of art.
 #
@@ -14,8 +17,8 @@
 #
 #   That creates:  assets/img/my-painting.jpg
 #
-#   Then add a file for the piece in _art/ (the script prints what to put in
-#   it), and commit and push both.
+#   Then add the piece to the list in _data/art.yml (the script prints the
+#   lines to paste in), and commit and push.
 #
 # WHAT YOU NEED
 #   A Mac. It uses "sips", an image tool that comes with macOS, so there is
@@ -24,9 +27,9 @@
 # Stop right away if any command fails, instead of carrying on confused.
 set -e
 
-# The longest side of the web copy, in pixels. 1600 looks sharp on most
+# The longest side of the web copy, in pixels. 1200 looks sharp on most
 # screens and still loads quickly. Make it smaller for even faster pages.
-MAX_SIZE=1600
+MAX_SIZE=1200
 
 # JPEG quality from 0 (tiny, ugly) to 100 (huge, perfect). 80 is a good balance.
 QUALITY=80
@@ -63,13 +66,13 @@ sips -Z "$MAX_SIZE" -s format jpeg -s formatOptions "$QUALITY" "$SOURCE" --out "
 
 echo "Made $OUTPUT"
 echo ""
-echo "Next: make a file called _art/${NAME%.*}.md containing these lines,"
-echo "and change the title, date, description, and alt to match your piece:"
+echo "Next: open _data/art.yml, paste these lines at the very bottom, and"
+echo "change the title, date, category, description, and alt to match your piece."
+echo "Keep the \"-\" at the left edge and the other lines indented by two spaces."
 echo ""
-echo "---"
-echo "title: My New Piece"
-echo "date: $(date +%Y-%m-%d)"
-echo "description: One sentence about it."
-echo "image: /$OUTPUT"
-echo "alt: A short description of the picture, for people who can't see it."
-echo "---"
+echo "- title: My New Piece"
+echo "  date: $(date +%Y-%m-%d)"
+echo "  category: School Projects"
+echo "  description: One sentence about it."
+echo "  image: /$OUTPUT"
+echo "  alt: A short description of the picture, for people who can't see it."

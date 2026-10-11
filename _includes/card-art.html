@@ -3,7 +3,7 @@
         <img src="{{ piece.image | relative_url }}" alt="{{ piece.alt | escape }}">
         <div class="info">
           <h3>{{ piece.title }}</h3>
-          <p class="date">{{ piece.date | date: "%B %Y" }}</p>
+          {% if piece.date %}<p class="date">{{ piece.date | date: "%B %Y" }}</p>{% endif %}
           <p>{{ piece.description }}</p>
         </div>
       </div>

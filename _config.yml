@@ -27,7 +27,7 @@ description: Showcasing works by Darcy Jones
 #
 # (Each theme's colors are listed in _data/themes.yml. You can add your own
 # theme there too.)
-color_theme: ocean
+color_theme: dark
 
 # Want to change just one color? Remove the "# " at the start of a line below
 # and put in your own color. Colors are written as a "#" and six letters or

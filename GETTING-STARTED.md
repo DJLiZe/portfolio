@@ -297,6 +297,18 @@ make a small web copy first. It's one command.
 
 The piece gets its own page and a box on the home page by itself.
 
+**Bringing in lots of existing art at once?** Put all the originals in a
+folder, then run:
+
+```sh
+./resize-all.sh                       # every image in source/art/
+./resize-all.sh source/art/batch1/    # or every image in a folder you pick
+```
+
+It runs `resize-image.sh` on each image (.png, .jpg, .jpeg, .heic) and prints
+the front matter for each one, so you can make the `_art/` files from steps
+3 and 4. For adding one new piece, `resize-image.sh` is all you need.
+
 ### Changing the colors
 
 Open `_config.yml` and find the **COLORS** section. You never need to touch

@@ -66,6 +66,10 @@ defaults:
 # Show pieces even if their date is in the future (Jekyll hides them otherwise).
 future: true
 
+# GitHub Pages adds its Primer theme when this setting is missing. Turn that
+# default off so Primer does not replace our own assets/css/style.css file.
+theme: null
+
 # Files and folders that are part of the repo but not part of the website.
 # source/ holds your full-size originals: the site shows the small copies in
 # assets/img/ instead, so pages load fast.

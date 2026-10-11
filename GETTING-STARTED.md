@@ -67,8 +67,8 @@ works too, but then you turn Pages on yourself in Settings, and the address
 has the repo name on the end (`https://<your-username>.github.io/<repo-name>/`).
 For a first project, the `username.github.io` name is the easy choice.
 
-Either way, one setting is needed, because this template keeps the website in
-the `docs/` folder. You'll do that in step 6.
+Either way, one setting is needed, to tell GitHub Pages that a GitHub Action
+builds and publishes your site. You'll do that in step 6.
 
 ## 4. Get the repo on your computer and add this template
 
@@ -103,8 +103,8 @@ rsync -a --exclude .git <path-to-starter-kit>/ ./
 this folder". `--exclude .git` skips the starter kit's own hidden git history,
 so your repo starts fresh with your history.)
 
-Check it worked. You should see `README.md`, `GETTING-STARTED.md`, `docs`,
-`source`, and the other files:
+Check it worked. You should see `README.md`, `GETTING-STARTED.md`,
+`content.yaml`, `source`, `templates`, and the other files:
 
 ```sh
 ls
@@ -143,8 +143,10 @@ It needs a **personal access token** instead:
    **Developer settings** (at the bottom of the left menu), then
    **Personal access tokens**, then **Tokens (classic)**, then
    **Generate new token (classic)**.
-2. Give it a note like `my laptop`, pick an expiration, and tick the **repo**
-   box.
+2. Give it a note like `my laptop`, pick an expiration, and tick two boxes:
+   **repo** and **workflow**. (`workflow` lets you push the file in
+   `.github/workflows/` that tells GitHub how to publish your site. Without
+   it, GitHub refuses the push.)
 3. Click **Generate token** and copy it. GitHub only shows it once.
 4. Back in Terminal, paste the token when git asks for your password. Nothing
    appears as you paste. That's normal. Press Enter.
@@ -155,30 +157,52 @@ Reload your repo page on GitHub. Your files are there.
 
 ## 6. Turn on your website
 
+Your site is built and published by a **GitHub Action**: a small program
+GitHub runs for you every time you push. The instructions for it are in
+`.github/workflows/publish.yml`. You need to tell GitHub Pages to use it.
+
 1. In your repo on GitHub, click **Settings**, then **Pages** in the left menu.
-2. Under **Build and deployment**, set **Source** to **Deploy from a branch**.
-3. Under **Branch**, pick **main**, change the folder dropdown from `/ (root)`
-   to **`/docs`**, then click **Save**.
-4. Wait a minute or two. Click the **Actions** tab at the top of your repo
-   to watch it publish. A green check means it's done.
+2. Under **Build and deployment**, set **Source** to **GitHub Actions**.
+
+   **This is a change.** An earlier version of this guide said to pick
+   **Deploy from a branch** and the **`/docs`** folder. Don't. This template
+   no longer keeps a finished website in `docs/`; the Action builds it fresh
+   each time. If Source already says "Deploy from a branch", change it.
+3. Your first push happened before this setting existed, so run the Action
+   once by hand: click the **Actions** tab at the top of your repo, click
+   **Publish site** on the left, then **Run workflow**, then the green
+   **Run workflow** button. (A red X on an earlier run is fine. That was the
+   run from before Pages was set up.)
+4. Wait a minute or two. A green check next to the run means it's done.
 5. Visit `https://<your-username>.github.io/`.
 
 You should see the example portfolio with "Your Name" at the top. **That page
 is live on the internet.** Anyone with the link can see it.
 
 If you see a 404 page, wait another minute and reload. Double-check that the
-Pages setting says `main` and `/docs`.
+Pages Source says **GitHub Actions** and that the latest run in the Actions
+tab has a green check.
 
 ## 7. Make it yours
 
-First, put your name on it. Open `docs/index.html` in a text editor (TextEdit
+From now on, every change follows the same four steps:
+
+1. **Change your files:** originals go in `source/`, and every piece gets an
+   entry in `content.yaml`.
+2. **Stage and commit:** `git add .` then `git commit -m "<what you did>"`.
+3. **Push:** `git push`.
+4. **Wait a minute or two.** The Action makes web-sized copies of your
+   images, builds every page, and publishes the site. Watch it in the
+   **Actions** tab, then reload your site.
+
+You never edit the website's HTML pages one by one, and there's nothing to
+resize or copy into `docs/` by hand. (If a run gets a red X, click it to see
+the error message. It usually names the line in `content.yaml` to fix. Fix
+it, then commit and push again.)
+
+First, put your name on it. Open `content.yaml` in a text editor (TextEdit
 works, but a free code editor like [VS Code](https://code.visualstudio.com/)
-is much nicer). Change `Your Name` and the tagline, and save.
-
-To preview a page before you publish it, double-click the HTML file in Finder
-to open it in your browser.
-
-Then commit and push, the same pattern every time:
+is much nicer). Change `name:` and `tagline:` near the top, and save. Then:
 
 ```sh
 git add .
@@ -186,51 +210,65 @@ git commit -m "Put my name on the site"
 git push
 ```
 
-Reload your site after a minute to see the change.
+Reload your site after a minute or two to see the change.
+
+### Previewing before you push (optional)
+
+You can build the site on your own Mac exactly the way the Action does:
+
+```sh
+python3 build-site.py
+open docs/index.html
+```
+
+That opens your site in your browser, straight from your computer. The
+`docs/` folder it makes is only a preview: git ignores it, and it's rebuilt
+from scratch every time, so don't edit anything in it.
 
 ### Adding a new art piece
 
 1. **Save the original** in `source/art/`, full quality, for example
-   `source/art/self-portrait.png`. This is the real thing, saved in git.
-2. **Make the web copy:**
-   ```sh
-   ./resize-image.sh source/art/self-portrait.png
-   ```
-   This creates `docs/assets/img/self-portrait.jpg`, a smaller version that
-   loads quickly.
-3. **Make its page:** copy an existing art page, for example
-   `docs/art-sunset.html`, to a new name like `docs/art-self-portrait.html`.
-   Open it and change the title, the date, the image path
-   (`assets/img/self-portrait.jpg`), the `alt` text (a short description of
-   the picture for people who can't see it), and the description.
-4. **Add it to the home page:** in `docs/index.html`, copy one of the
-   `<a class="card"> ... </a>` blocks in the Art section, and change the link,
-   image, and title to match.
-5. **Add it to `content.yaml`:** copy a block and fill in the details.
-6. **Commit and push:**
+   `source/art/self-portrait.png`.
+2. **Add it to `content.yaml`:** copy one of the art blocks (from
+   `- title:` down to `alt:`), paste it at the bottom, and change the values.
+   `source:` is the path to your original, like
+   `source/art/self-portrait.png`. `alt:` is a short description of the
+   picture for people who can't see it.
+3. **Commit and push:**
    ```sh
    git add .
    git commit -m "Add self-portrait"
    git push
    ```
 
+The Action makes the web-sized copy, the piece's own page, and its card on
+the home page.
+
 ### Adding a new piece of writing
 
-1. **Save the original** as a text file in `source/writing/`, for example
-   `source/writing/winter-story.md`.
-2. **Make its page:** copy `docs/writing-morning-bus.html` (for poems, where
-   line breaks matter) or `docs/writing-why-i-draw.html` (for prose, where each
-   paragraph goes in `<p> ... </p>`). Paste in your text and change the title
-   and date.
-3. **Add a card** to the Writing section of `docs/index.html` with a short
-   excerpt.
-4. **Add it to `content.yaml`**, then commit and push like above.
+1. **Save it** as a plain text file in `source/writing/`, for example
+   `source/writing/winter-story.md`. Leave a blank line between paragraphs.
+   Lines that start with `#` are treated as notes and left off the website.
+2. **Add it to `content.yaml`:** copy one of the writing blocks and change the
+   values. Set `form:` to `poem` to keep your line breaks exactly as typed, or
+   `prose` for paragraphs. `excerpt:` is the short quote shown on the home
+   page.
+3. **Commit and push** like above.
+
+### Changing how the site looks
+
+The pages are built from the files in `templates/`: `index.html` for the
+home page, `art.html` and `writing.html` for one piece's page, and the two
+`card-...` files for the boxes on the home page. Words starting with `$`, like
+`$title`, are blanks that get filled in from `content.yaml`. Colors, fonts,
+and layout are in `templates/style.css`. Change them, preview, then commit
+and push.
 
 ### Removing the examples
 
 When you have your own pieces, delete the example files (everything named
-`example-...` and the example pages in `docs/`), remove their cards from
-`docs/index.html` and their entries from `content.yaml`, then commit and push.
+`example-...` in `source/`) and remove their entries from `content.yaml`,
+then commit and push. Their pages disappear from the site on the next build.
 Don't worry, git still has them in your history if you ever want them back.
 
 ---
@@ -238,18 +276,20 @@ Don't worry, git still has them in your history if you ever want them back.
 ## How this template is put together (and why)
 
 - **Two copies of every artwork.** The full-quality original lives in
-  `source/`, safely versioned in git. The website in `docs/` only shows a
-  smaller copy, so pages load fast. Your repo is public, so the originals can
+  `source/`, safely versioned in git. The website only shows a smaller copy
+  that the build makes, so pages load fast. Your repo is public, so the originals can
   still be downloaded from GitHub. Keep anything private out of this repo.
-- **The pages are written by hand.** Each page in `docs/` is a plain HTML file
-  you edit directly. There's no tool that builds the site from a data file.
-  That means a bit of copying and pasting when you add a piece, but nothing is
-  hidden: what's in the file is exactly what's on the website, and you learn
-  how HTML actually works.
-- **`content.yaml` is a record, not a recipe.** The website doesn't read it.
-  It's a tidy list of every piece, where its original lives, and where it's
-  published, for you and anyone browsing your repo. If you later want to
-  generate pages from it automatically, it's already in the right shape.
+- **The website is built, not hand-written.** You keep the real things (your
+  originals and `content.yaml`) in git. `build-site.py` turns them into the
+  website, and the GitHub Action runs it on every push. So adding a piece is
+  one new file plus a few lines in `content.yaml`, and every page always
+  matches the list. The finished site is never saved in git, because it can
+  always be rebuilt.
+- **Nothing hidden.** `build-site.py` is a short Python file with notes
+  explaining every step, and the templates are ordinary HTML. Open them and
+  read them. The Action runs the same `resize-image.sh` you could run
+  yourself, on a Mac, so what happens on GitHub is what happens on your
+  computer.
 - **Very large files.** GitHub warns about files over 50 MB and rejects files
   over 100 MB. Most art scans and photos are well under that. If yours aren't,
   save a slightly smaller "master" copy in `source/`.
@@ -265,4 +305,5 @@ Don't worry, git still has them in your history if you ever want them back.
 | pull | Bring down commits from GitHub (useful if you edit on github.com or a second computer: run `git pull` first). |
 | clone | Download a copy of a repo from GitHub. |
 | branch | A line of history. You only need `main` for now. |
-| GitHub Pages | GitHub's free website hosting, which publishes your `docs/` folder. |
+| GitHub Pages | GitHub's free website hosting. |
+| GitHub Action | A program GitHub runs for you when something happens, like a push. Yours builds and publishes your site. |

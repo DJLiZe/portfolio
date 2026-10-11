@@ -1,59 +1,72 @@
-# content.yaml - a list of every piece in your portfolio.
+# content.yaml - the list of every piece in your portfolio.
 #
-# This file is NOTES FOR YOU (and anyone reading your repo). The website does
-# not read it - the pages in docs/ are plain HTML files you edit by hand.
-# Keeping this list up to date is a good habit: it shows, in one place, where
-# each original lives and where its web version is published.
+# The website is built from this file. Every time you push, a GitHub Action
+# runs build-site.py, which reads this list, makes a web-sized copy of each
+# image, and writes one web page per piece plus the home page. Pieces show up
+# on the home page in the same order as they appear here.
 #
-# Each piece starts with a "-" and has the same fields:
+# Lines starting with "#" (like these) are notes for you. The build skips them.
+
+# Your name, shown at the top of every page, and a line about you for the
+# home page.
+name: Your Name
+tagline: Art and writing. (Change this line to describe yourself.)
+
+# Each piece starts with "- title:" and has these fields, each on its own line:
 #   title        - the name of the piece
 #   type         - art or writing
 #   date         - when you made it, written YYYY-MM-DD
-#   description  - one sentence about it
-#   source       - the original, full-quality file (kept in git, not shown on the site)
-#   published    - the web page (and image, for art) that the site shows
+#   description  - one sentence about it (shown under the picture on art pages)
+#   source       - the original file in source/art/ or source/writing/
+#
+# Art pieces also need:
+#   alt          - a short description of the picture, for people who can't
+#                  see it (screen readers read this out loud)
+#
+# Writing pieces also need:
+#   form         - poem (keeps your line breaks exactly) or prose (blank lines
+#                  separate paragraphs)
+#   excerpt      - a short quote for the home page card (optional - leave it
+#                  out and the first line is used)
 #
 # To add a piece: copy one block, paste it at the bottom, and change the values.
+# Keep the two spaces at the start of each line after "- title:".
+# If a value contains ": " (a colon then a space), wrap it in "double quotes".
 
-- title: Sunset (EXAMPLE)
-  type: art
-  date: 2026-09-01
-  description: Placeholder artwork - replace with your own.
-  source: source/art/example-sunset.png
-  published:
-    page: docs/art-sunset.html
-    image: docs/assets/img/example-sunset.jpg
+pieces:
+  - title: Sunset (EXAMPLE)
+    type: art
+    date: 2026-09-01
+    description: Placeholder artwork - replace with your own.
+    source: source/art/example-sunset.png
+    alt: "Placeholder image: an orange background with a yellow circle and the word EXAMPLE."
 
-- title: City at Night (EXAMPLE)
-  type: art
-  date: 2026-09-15
-  description: Placeholder artwork - replace with your own.
-  source: source/art/example-city.png
-  published:
-    page: docs/art-city.html
-    image: docs/assets/img/example-city.jpg
+  - title: City at Night (EXAMPLE)
+    type: art
+    date: 2026-09-15
+    description: Placeholder artwork - replace with your own.
+    source: source/art/example-city.png
+    alt: "Placeholder image: a dark blue background with blue rectangles and the word EXAMPLE."
 
-- title: Mountains (EXAMPLE)
-  type: art
-  date: 2026-10-01
-  description: Placeholder artwork - replace with your own.
-  source: source/art/example-mountains.png
-  published:
-    page: docs/art-mountains.html
-    image: docs/assets/img/example-mountains.jpg
+  - title: Mountains (EXAMPLE)
+    type: art
+    date: 2026-10-01
+    description: Placeholder artwork - replace with your own.
+    source: source/art/example-mountains.png
+    alt: "Placeholder image: a green background with a pale mountain shape and the word EXAMPLE."
 
-- title: Morning Bus (EXAMPLE)
-  type: writing
-  date: 2026-09-10
-  description: Placeholder poem - replace with your own.
-  source: source/writing/example-poem.md
-  published:
-    page: docs/writing-morning-bus.html
+  - title: Morning Bus (EXAMPLE)
+    type: writing
+    date: 2026-09-10
+    description: Placeholder poem - replace with your own.
+    source: source/writing/example-poem.md
+    form: poem
+    excerpt: The bus sighs at the corner, a tired animal in the cold...
 
-- title: Why I Draw (EXAMPLE)
-  type: writing
-  date: 2026-09-20
-  description: Placeholder essay excerpt - replace with your own.
-  source: source/writing/example-essay.md
-  published:
-    page: docs/writing-why-i-draw.html
+  - title: Why I Draw (EXAMPLE)
+    type: writing
+    date: 2026-09-20
+    description: Placeholder essay excerpt - replace with your own.
+    source: source/writing/example-essay.md
+    form: prose
+    excerpt: I started drawing because I was bored in class...

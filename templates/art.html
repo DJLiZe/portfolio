@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!--
+  art.html - the TEMPLATE for one art piece's page.
+  build-site.py makes one page from this for every art piece in content.yaml.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>$title - $name</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header>
+    <h1><a href="index.html">$name</a></h1>
+    <p class="tagline"><a href="index.html">&larr; Back to all work</a></p>
+  </header>
+
+  <main>
+    <h2>$title</h2>
+    <p class="date">$date</p>
+
+    <!-- The small web copy made by resize-image.sh. The original is $source (not on the website). -->
+    <img class="artwork" src="$image" alt="$alt">
+
+    <p>$description</p>
+  </main>
+
+  <footer>
+    <p>&copy; $year $name</p>
+  </footer>
+</body>
+</html>

@@ -1,7 +1,8 @@
 /*
   style.css - how every page on the site looks.
   Every page links to this one file, so a change here changes the whole site.
-  Try changing a color below, save, and reload a page in your browser.
+  build-site.py copies it to docs/assets/css/style.css when it builds the site.
+  Try changing a color below, run the build, and reload a page in your browser.
 */
 
 /* Colors and fonts used everywhere. Change these to restyle the site. */

@@ -14,8 +14,8 @@
 #
 #   That creates:  assets/img/my-painting.jpg
 #
-#   Then add a file for the piece in _art/ (the script prints what to put in
-#   it), and commit and push both.
+#   Then add the piece to the list in _data/art.yml (the script prints the
+#   lines to paste in), and commit and push.
 #
 # WHAT YOU NEED
 #   A Mac. It uses "sips", an image tool that comes with macOS, so there is
@@ -63,13 +63,13 @@ sips -Z "$MAX_SIZE" -s format jpeg -s formatOptions "$QUALITY" "$SOURCE" --out "
 
 echo "Made $OUTPUT"
 echo ""
-echo "Next: make a file called _art/${NAME%.*}.md containing these lines,"
-echo "and change the title, date, description, and alt to match your piece:"
+echo "Next: open _data/art.yml, paste these lines at the very bottom, and"
+echo "change the title, date, category, description, and alt to match your piece."
+echo "Keep the \"-\" at the left edge and the other lines indented by two spaces."
 echo ""
-echo "---"
-echo "title: My New Piece"
-echo "date: $(date +%Y-%m-%d)"
-echo "description: One sentence about it."
-echo "image: /$OUTPUT"
-echo "alt: A short description of the picture, for people who can't see it."
-echo "---"
+echo "- title: My New Piece"
+echo "  date: $(date +%Y-%m-%d)"
+echo "  category: School Projects"
+echo "  description: One sentence about it."
+echo "  image: /$OUTPUT"
+echo "  alt: A short description of the picture, for people who can't see it."

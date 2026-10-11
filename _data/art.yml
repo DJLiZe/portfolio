@@ -1,0 +1,39 @@
+# _data/art.yml - every art piece on your site, in one list.
+#
+# Each piece starts with "- title:" and the lines under it (indented by two
+# spaces, lined up with "title") are that piece's details. To add a piece,
+# copy one of them, paste it at the bottom, and change the values. The home
+# page sorts them newest first, so the order here doesn't matter.
+#
+#   title:        the piece's name
+#   date:         when you made it, written year-month-day
+#   category:     which section of the home page it goes in (leave the line
+#                 out and the piece goes in a section called "Other")
+#   description:  one sentence about it
+#   image:        the web copy that resize-image.sh made, in assets/img/
+#   alt:          a short description of the picture, for people who can't
+#                 see it
+#
+# If a value has a colon and a space in it (like "Part 1: Home"), wrap the
+# whole value in "double quotes".
+
+- title: Sunset (EXAMPLE)
+  date: 2026-09-01
+  category: Cards
+  description: Placeholder artwork - replace with your own.
+  image: /assets/img/example-sunset.jpg
+  alt: "Placeholder image: an orange background with a yellow circle and the word EXAMPLE."
+
+- title: City at Night (EXAMPLE)
+  date: 2026-09-15
+  category: School Projects
+  description: Placeholder artwork - replace with your own.
+  image: /assets/img/example-city.jpg
+  alt: "Placeholder image: a dark blue background with blue rectangles and the word EXAMPLE."
+
+- title: Mountains (EXAMPLE)
+  date: 2026-10-01
+  category: School Projects
+  description: Placeholder artwork - replace with your own.
+  image: /assets/img/example-mountains.jpg
+  alt: "Placeholder image: a green background with a pale mountain shape and the word EXAMPLE."

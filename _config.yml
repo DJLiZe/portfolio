@@ -42,19 +42,14 @@ color_theme: dark
 # HOW THE SITE IS BUILT (you normally don't need to change anything below)
 # ---------------------------------------------------------------------------
 
-# Your art pieces. Each file in _art/ describes one piece (its title, date,
-# category, description, and image). "output: false" means the pieces don't get pages
-# of their own: the home page reads them all and shows every one directly.
-collections:
-  art:
-    output: false
-
+# Your art pieces are listed in _data/art.yml (one entry per piece: title,
+# date, category, description, and image). The home page reads that list and
+# shows every piece directly.
+#
 # (This site used to have a writing section too. It's switched off for now.
-# To bring it back later, add a "writing:" collection here next to "art:",
-# plus a _writing/ folder and a section for it in index.html.)
-
-# Show pieces even if their date is in the future (Jekyll hides them otherwise).
-future: true
+# To bring it back later, add a "collections:" setting here with a
+# "writing:" collection, plus a _writing/ folder and a section for it in
+# index.html.)
 
 # GitHub Pages adds its Primer theme when this setting is missing. Turn that
 # default off so Primer does not replace our own assets/css/style.css file.

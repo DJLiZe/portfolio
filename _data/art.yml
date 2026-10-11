@@ -72,11 +72,6 @@
   image: /assets/img/barbara-jordan-portrait.jpg
   alt: A black-and-white painted portrait of Barbara Jordan, mid-speech with one finger raised, wearing a leopard-print blouse, painted over a background of her handwritten 1976 Democratic National Convention keynote speech with her name lettered across the top.
 
-- title: Ombré Block Printing 
-  category: School Projects
-  description: Ink on paper. 2024
-  image: /assets/img/bird-block-print.jpg
-  alt: Nine block prints of the same bird-on-a-flowering-branch design arranged in a grid, each pulled in a different ink color from teal and blue to navy, red, and orange.
 
 - title: "Thank You: Photos"
   category: Cards
@@ -107,3 +102,9 @@
   description: Modge podge on acrylic on clay. 2025
   image: /assets/img/scrollwork-bowl.jpg
   alt: An oval ceramic dish with a scalloped black rim, painted in red, black, and white with four stylized swirling birds arranged around a small central flower.
+
+- title: Ombré Block Printing 
+  category: School Projects
+  description: Ink on paper. 2024
+  image: /assets/img/bird-block-print.jpg
+  alt: Nine block prints of the same bird-on-a-flowering-branch design arranged in a grid, each pulled in a different ink color from teal and blue to navy, red, and orange.

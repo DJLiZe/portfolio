@@ -112,7 +112,7 @@ ls -a
 ```
 
 (`-a` shows everything, including the folders whose names start with `_` or
-`.`, like `_art` and `_writing`.)
+`.`, like `_art` and `_layouts`.)
 
 ## 5. Your first commit and push
 
@@ -193,14 +193,13 @@ Pages Source says **Deploy from a branch**, with **main** and **/ (root)**.
 
 From now on, every change follows the same four steps:
 
-1. **Change your files:** a new file in `_writing/` or `_art/`, or a setting in
-   `_config.yml`.
+1. **Change your files:** a new file in `_art/`, or a setting in `_config.yml`.
 2. **Stage and commit:** `git add .` then `git commit -m "<what you did>"`.
 3. **Push:** `git push`.
-4. **Wait a minute or two,** then reload your site. GitHub rebuilds every page
-   for you.
+4. **Wait a minute or two,** then reload your site. GitHub rebuilds it for
+   you.
 
-You never edit the website's pages one by one. (If a build fails, you'll get
+You never edit the website's HTML by hand. (If a build fails, you'll get
 an email from GitHub and a red X in the **Actions** tab. Click it to read the
 error. It usually names the file and line to fix, often a missing `---` or a
 `:` in a title that needs "quotes". Fix it, then commit and push again.)
@@ -220,55 +219,23 @@ Reload your site after a minute or two to see the change.
 
 ### What's front matter?
 
-Every piece is one file. At the top of the file, between two lines of three
-dashes, are the piece's details. That's called **front matter**:
+Every art piece is one small file in `_art/`. Between two lines of three
+dashes are the piece's details. That's called **front matter**:
 
 ```
 ---
 title: Morning Bus
 date: 2026-09-10
-description: A poem about the ride to school.
+category: School Projects
+description: A pencil sketch of the ride to school.
+image: /assets/img/morning-bus.jpg
+alt: A pencil sketch of a yellow school bus at a stop, kids lining up.
 ---
 ```
 
 Each line is a name, a colon and a space, then the value. Dates are written
 year-month-day. If a value has a colon and a space in it (like
 `Part 1: Home`), wrap the whole value in "double quotes".
-
-### Adding a new piece of writing
-
-No extra steps: just one new file.
-
-1. **Make a new file** in `_writing/`, for example `_writing/winter-story.md`.
-   The file name becomes part of the page's address, so use lowercase letters
-   and dashes, no spaces.
-2. **Start it with front matter,** then write (or paste) your writing
-   underneath:
-
-   ```
-   ---
-   title: Winter Story
-   date: 2026-12-01
-   description: A short story about the first snow.
-   form: prose
-   ---
-   The snow started at noon, which was the worst possible time...
-
-   Leave a blank line between paragraphs.
-   ```
-
-   Set `form:` to `poem` to keep your line breaks exactly as typed (a blank
-   line still starts a new stanza), or `prose` for ordinary paragraphs. The
-   home page shows the first few words as a preview.
-3. **Commit and push:**
-   ```sh
-   git add .
-   git commit -m "Add winter story"
-   git push
-   ```
-
-Copying one of the example files in `_writing/` and changing it is the easiest
-way to start.
 
 ### Adding a new art piece
 
@@ -287,6 +254,17 @@ make a small web copy first. It's one command.
    paste in what the script printed. Change the values. `image:` is the web
    copy the script made. `alt:` is a short description of the picture for
    people who can't see it.
+
+   Then add one more line under `date:` to say which section of the home
+   page the piece goes in, for example:
+   ```
+   category: Cards
+   ```
+   Use any name you like (`School Projects`, `Cards`, `Sketchbook`...). Every
+   piece with the same category shows up together under that heading, so
+   spell it the same way each time (capital letters count: `cards` and
+   `Cards` would be two different sections). If you leave `category:` out,
+   the piece still shows up, in a section called **Other** at the bottom.
 4. **Commit and push** (this sends the original, the web copy, and the new
    file together):
    ```sh
@@ -295,7 +273,16 @@ make a small web copy first. It's one command.
    git push
    ```
 
-The piece gets its own page and a box on the home page by itself.
+The piece shows up on the home page by itself, under its category's heading,
+with its image, title, date, and description. There's no separate page for each piece: the home page is
+the whole site, and it shows everything.
+
+### What about writing?
+
+**Not for now.** This version of the site is art only, to keep your first
+site simple. A writing section (poems, essays, stories) can be added back
+later if you want one: it's a new folder next to `_art/`, a line in
+`_config.yml`, and a section in `index.html`.
 
 **Bringing in lots of existing art at once?** Put all the originals in a
 folder, then run:
@@ -341,9 +328,9 @@ follow the note at its top.)
 
 ### Changing how the site looks
 
-The page designs are in `_layouts/` (`default.html` is the frame around every
-page, `art.html` and `writing.html` are one piece's page) and `_includes/`
-(the boxes on the home page). The home page itself is `index.html`. Words in
+The home page is `index.html`, the only page on the site. The frame around it
+(the header with your name, and the footer) is `_layouts/default.html`, and
+the box drawn for each art piece is `_includes/card-art.html`. Words in
 `{{ double braces }}` are blanks Jekyll fills in from `_config.yml` and from
 each piece's front matter. Fonts and layout are in `assets/css/style.css`.
 
@@ -357,8 +344,8 @@ some setup, so skip it for now.
 ### Removing the examples
 
 When you have your own pieces, delete the example files: everything named
-`example-...` in `_art/`, `_writing/`, `assets/img/`, and `source/art/`. Then
-commit and push. Their pages disappear from the site on the next build. Don't
+`example-...` in `_art/`, `assets/img/`, and `source/art/`. Then commit and
+push. They disappear from the home page on the next build. Don't
 worry, git still has them in your history if you ever want them back.
 
 ---
@@ -373,11 +360,16 @@ worry, git still has them in your history if you ever want them back.
 - **The website is built, not hand-written.** You keep the real things (your
   pieces and `_config.yml`) in git. Jekyll, built into GitHub Pages, turns
   them into the website on every push. So adding a piece is one new file, and
-  every page always matches what's in `_art/` and `_writing/`. The finished
+  the site always matches what's in `_art/`. The finished
   site is never saved in git, because it can always be rebuilt.
 - **Only images need a manual step.** GitHub's builder can't resize images,
   so `resize-image.sh` does that once per new piece, on your Mac. Everything
   else is automatic.
+- **One page, art only (for now).** The home page shows every piece
+  directly, with no separate page per piece. Earlier versions of this
+  template also had a writing section and a page for each piece. Those are
+  switched off for now to keep things simple, and can come back later if you
+  want them.
 - **Nothing hidden.** The layouts are ordinary HTML with a few blanks to fill
   in, and every file has notes explaining it. Open them and read them.
 - **Served from the top folder.** GitHub Pages builds the site from the top
@@ -402,5 +394,5 @@ worry, git still has them in your history if you ever want them back.
 | branch | A line of history. You only need `main` for now. |
 | GitHub Pages | GitHub's free website hosting. |
 | Jekyll | The website builder built into GitHub Pages. It turns your files into web pages every time you push. |
-| front matter | The lines between two `---` at the top of a file in `_art/` or `_writing/`: the piece's title, date, and other details. |
+| front matter | The lines between two `---` at the top of a file in `_art/`: the piece's title, date, category, image, and other details. |
 | hex color | A color written as `#` plus six letters or digits, like `#b5482a`. Any color picker on the web shows them. |

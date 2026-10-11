@@ -1,20 +1,35 @@
 ---
-# index.html - the home page. It shows a box for every file in _art/ and
-# _writing/, newest first. Add a file there and it appears here by itself.
+# index.html - the home page, and the only page on the site. It shows every
+# file in _art/, grouped by its "category:" (one heading per category), newest
+# first. Pieces with no category go in an "Other" section at the end. Add a
+# file there and it appears here by itself.
 layout: default
 ---
-    <h2>Art</h2>
+{% assign art = site.art | sort: "date" | reverse %}
+{% comment %}
+  group_by makes one group per category name, in the order they first appear
+  (so the category with the newest piece comes first). Pieces with no
+  category end up in a group whose name is blank: that one is shown last, as
+  "Other".
+{% endcomment %}
+{% assign categories = art | group_by: "category" %}
+{% for category in categories %}
+  {% if category.name != "" %}
+    <h2>{{ category.name }}</h2>
     <div class="grid">
-      {% assign art = site.art | sort: "date" | reverse %}
-      {% for piece in art %}
+      {% for piece in category.items %}
         {% include card-art.html %}
       {% endfor %}
     </div>
-
-    <h2>Writing</h2>
+  {% endif %}
+{% endfor %}
+{% for category in categories %}
+  {% if category.name == "" %}
+    <h2>Other</h2>
     <div class="grid">
-      {% assign writing = site.writing | sort: "date" | reverse %}
-      {% for piece in writing %}
-        {% include card-writing.html %}
+      {% for piece in category.items %}
+        {% include card-art.html %}
       {% endfor %}
     </div>
+  {% endif %}
+{% endfor %}

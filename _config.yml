@@ -42,26 +42,16 @@ color_theme: ocean
 # HOW THE SITE IS BUILT (you normally don't need to change anything below)
 # ---------------------------------------------------------------------------
 
-# Your pieces. Each file in _art/ or _writing/ becomes its own page.
+# Your art pieces. Each file in _art/ describes one piece (its title, date,
+# category, description, and image). "output: false" means the pieces don't get pages
+# of their own: the home page reads them all and shows every one directly.
 collections:
   art:
-    output: true
-    permalink: /art/:name/
-  writing:
-    output: true
-    permalink: /writing/:name/
+    output: false
 
-# Which page design each kind of piece uses, so you don't have to say it in
-# every file.
-defaults:
-  - scope:
-      type: art
-    values:
-      layout: art
-  - scope:
-      type: writing
-    values:
-      layout: writing
+# (This site used to have a writing section too. It's switched off for now.
+# To bring it back later, add a "writing:" collection here next to "art:",
+# plus a _writing/ folder and a section for it in index.html.)
 
 # Show pieces even if their date is in the future (Jekyll hides them otherwise).
 future: true

@@ -1,8 +1,0 @@
-{% comment %} One piece of writing's box on the home page. "piece" is the piece being shown. {% endcomment %}
-      <a class="card" href="{{ piece.url | relative_url }}">
-        <div class="info">
-          <h3>{{ piece.title }}</h3>
-          <p>{{ piece.date | date: "%B %Y" }}</p>
-          <p><em>"{{ piece.excerpt | strip_html | strip | truncatewords: 15 }}"</em></p>
-        </div>
-      </a>

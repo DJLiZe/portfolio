@@ -1,8 +1,9 @@
 {% comment %} One art piece's box on the home page. "piece" is the piece being shown. {% endcomment %}
-      <a class="card" href="{{ piece.url | relative_url }}">
+      <div class="card">
         <img src="{{ piece.image | relative_url }}" alt="{{ piece.alt | escape }}">
         <div class="info">
           <h3>{{ piece.title }}</h3>
-          <p>{{ piece.date | date: "%B %Y" }}</p>
+          <p class="date">{{ piece.date | date: "%B %Y" }}</p>
+          <p>{{ piece.description }}</p>
         </div>
-      </a>
+      </div>

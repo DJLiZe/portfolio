@@ -1,7 +1,9 @@
-# EXAMPLE - replace with your own writing
-
-## Why I Draw (placeholder essay excerpt)
-
+---
+title: Why I Draw (EXAMPLE)
+date: 2026-09-20
+description: Placeholder essay excerpt - replace with your own.
+form: prose
+---
 I started drawing because I was bored in class. That is the honest answer,
 and it is not a very impressive one. A pencil, the back of a worksheet, and
 forty minutes of a lecture I had already read about: that was the beginning.

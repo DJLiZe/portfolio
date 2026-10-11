@@ -1,6 +1,10 @@
 # Files git should ignore. macOS creates .DS_Store files in every folder you open in Finder.
 .DS_Store
 
-# The finished website. build-site.py makes it from content.yaml, source/, and
-# templates/, and GitHub builds it fresh on every push, so it isn't saved in git.
-docs/
+# The finished website and Jekyll's scratch files. GitHub Pages builds the site
+# fresh on its own servers every time you push, so it isn't saved in git.
+# (You'd only see these folders if you install Jekyll and preview on your Mac.)
+_site/
+.jekyll-cache/
+.jekyll-metadata
+.sass-cache/

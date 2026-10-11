@@ -12,34 +12,41 @@ for your own work.
 
 ## How it works
 
-You only ever edit your originals and one list. GitHub builds the website:
+GitHub Pages has a website builder called **Jekyll** built in. Every time you
+push, it turns the files in this repo into your website by itself. There's no
+build script or workflow file to look after.
 
-1. Put a new image in `source/art/` (or a new text file in `source/writing/`).
-2. Add an entry for it to `content.yaml`.
-3. Commit and push.
-4. A **GitHub Action** (a small program GitHub runs for you) makes web-sized
-   copies of your images, builds every page, and publishes the site. It's
-   live a minute or two later.
+- **Writing:** add a text file to `_writing/`, commit, push. Done.
+- **Art:** run `./resize-image.sh` once on your new image (it makes a small
+  web copy), add a short file to `_art/`, commit, push. That one command is
+  the only manual step.
+- **Colors:** change `color_theme:` in `_config.yml` to `default`, `dark`,
+  `warm`, `ocean`, or `forest`, or set a single color like `accent_color:`.
+  No CSS needed.
+
+The site is live a minute or two after each push.
 
 ## What's inside
 
 | Path | What it holds |
 | --- | --- |
-| `source/art/` | Your original, full-quality art files. Kept safe in git. |
-| `source/writing/` | The original text of your writing, as plain text files. |
-| `content.yaml` | The list of every piece. The website is built from it. |
-| `templates/` | The HTML pages with blanks to fill in, and `style.css` (colors, fonts, layout). |
-| `build-site.py` | Builds the website from `content.yaml`, `source/`, and `templates/`. |
-| `resize-image.sh` | Makes a web-sized copy of an image (on a Mac). `build-site.py` uses it. |
-| `.github/workflows/publish.yml` | Tells GitHub to run `build-site.py` and publish the result on every push. |
-| `docs/` | The finished website. Made fresh by every build, never edited by hand or saved in git. |
+| `_config.yml` | Your name, your tagline, and your color theme. The main file you edit. |
+| `_art/` | One short file per art piece: title, date, description, and which image to show. |
+| `_writing/` | One file per piece of writing: a few details at the top, then the writing itself. |
+| `assets/img/` | The small web copies of your art, made by `resize-image.sh`. |
+| `source/art/` | Your original, full-quality art files. Kept safe in git, not shown on the site. |
+| `resize-image.sh` | Makes a web-sized copy of an image (on a Mac) and puts it in `assets/img/`. |
+| `index.html` | The home page. Lists every piece in `_art/` and `_writing/`. |
+| `_layouts/`, `_includes/` | The page designs Jekyll fills in for each piece. |
+| `_data/themes.yml` | The colors for each theme. Add your own theme here if you like. |
+| `assets/css/style.css` | Fonts and layout. Colors come from `_config.yml`, so you don't need to edit this. |
 
-There's nothing to install. The build uses Python and an image tool that
-both come with macOS, and the website itself is plain HTML and CSS.
+There's nothing to install. GitHub builds the site, and `resize-image.sh`
+uses an image tool that comes with macOS.
 
 ## Growing it later
 
-You can add other things next to the portfolio later without changing what's
-already here. For example, a `code/` folder for programming projects, or a
-`projects/` folder for other work. Only what `build-site.py` puts in `docs/`
-gets published, so new folders stay out of the way until you link to them.
+You can add other things next to the portfolio later. Any new page you add
+(an `about.md` with a `layout: default` line at the top, for example) becomes
+part of the site, and a new collection like `_projects/` can be added in
+`_config.yml` the same way `_art/` and `_writing/` are.

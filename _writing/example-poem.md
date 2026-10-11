@@ -1,7 +1,9 @@
-# EXAMPLE - replace with your own writing
-
-## Morning Bus (placeholder poem)
-
+---
+title: Morning Bus (EXAMPLE)
+date: 2026-09-10
+description: Placeholder poem - replace with your own.
+form: poem
+---
 The bus sighs at the corner,
 a tired animal in the cold.
 We climb inside with our headphones

@@ -1,0 +1,20 @@
+---
+# index.html - the home page. It shows a box for every file in _art/ and
+# _writing/, newest first. Add a file there and it appears here by itself.
+layout: default
+---
+    <h2>Art</h2>
+    <div class="grid">
+      {% assign art = site.art | sort: "date" | reverse %}
+      {% for piece in art %}
+        {% include card-art.html %}
+      {% endfor %}
+    </div>
+
+    <h2>Writing</h2>
+    <div class="grid">
+      {% assign writing = site.writing | sort: "date" | reverse %}
+      {% for piece in writing %}
+        {% include card-writing.html %}
+      {% endfor %}
+    </div>

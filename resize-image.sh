@@ -5,13 +5,17 @@
 # WHY THIS EXISTS
 #   Your original art in source/art/ stays at full quality: that's the "real
 #   thing", safely saved in git. Big originals load slowly on a website,
-#   though, so the site in docs/ shows a smaller, compressed copy. This script
-#   makes that copy for you.
+#   though, so the website shows a smaller, compressed copy from assets/img/.
+#   This script makes that copy for you. It's the one step GitHub can't do for
+#   you: run it once each time you add a new piece of art.
 #
 # HOW TO USE IT (in Terminal, from the top folder of this repo)
 #   ./resize-image.sh source/art/my-painting.png
 #
-#   That creates:  docs/assets/img/my-painting.jpg
+#   That creates:  assets/img/my-painting.jpg
+#
+#   Then add a file for the piece in _art/ (the script prints what to put in
+#   it), and commit and push both.
 #
 # WHAT YOU NEED
 #   A Mac. It uses "sips", an image tool that comes with macOS, so there is
@@ -45,7 +49,10 @@ fi
 # Work out the output name: keep the file name, drop the folder and the old
 # extension, then add .jpg. "source/art/sunset.png" becomes "sunset.jpg".
 NAME=$(basename "$SOURCE")
-OUTPUT="docs/assets/img/${NAME%.*}.jpg"
+OUTPUT="assets/img/${NAME%.*}.jpg"
+
+# Make sure the assets/img/ folder exists.
+mkdir -p assets/img
 
 # The actual work, in one sips command:
 #   -Z $MAX_SIZE                 shrink so the longest side is at most MAX_SIZE
@@ -55,4 +62,14 @@ OUTPUT="docs/assets/img/${NAME%.*}.jpg"
 sips -Z "$MAX_SIZE" -s format jpeg -s formatOptions "$QUALITY" "$SOURCE" --out "$OUTPUT" > /dev/null
 
 echo "Made $OUTPUT"
-echo "Next: use assets/img/${NAME%.*}.jpg in your page under docs/."
+echo ""
+echo "Next: make a file called _art/${NAME%.*}.md containing these lines,"
+echo "and change the title, date, description, and alt to match your piece:"
+echo ""
+echo "---"
+echo "title: My New Piece"
+echo "date: $(date +%Y-%m-%d)"
+echo "description: One sentence about it."
+echo "image: /$OUTPUT"
+echo "alt: A short description of the picture, for people who can't see it."
+echo "---"

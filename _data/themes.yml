@@ -1,0 +1,53 @@
+# themes.yml - the color themes you can pick with "color_theme:" in _config.yml.
+#
+# Each theme is a name followed by six colors:
+#   background - the page
+#   text       - the main text
+#   muted      - dates, captions, and other quieter text
+#   accent     - links and highlights
+#   card       - the boxes on the home page
+#   border     - lines around cards and under headings
+#
+# To make your own theme, copy one block (the name line and the six lines
+# under it), give it a new name, change the colors, and put that name in
+# _config.yml. Keep the two spaces at the start of each color line.
+
+default:
+  background: "#fdfbf7"
+  text: "#222222"
+  muted: "#666666"
+  accent: "#b5482a"
+  card: "#ffffff"
+  border: "#e4ded4"
+
+dark:
+  background: "#1b1a18"
+  text: "#eeeae4"
+  muted: "#a9a49c"
+  accent: "#f08a5d"
+  card: "#262522"
+  border: "#3a3834"
+
+warm:
+  background: "#fbf0e4"
+  text: "#3b2a20"
+  muted: "#7a6252"
+  accent: "#c4501b"
+  card: "#fff8f0"
+  border: "#ead6c2"
+
+ocean:
+  background: "#eef5f9"
+  text: "#14283a"
+  muted: "#52677a"
+  accent: "#0b7a86"
+  card: "#ffffff"
+  border: "#cfdfe8"
+
+forest:
+  background: "#f1f5ee"
+  text: "#1f2d1c"
+  muted: "#5b6b56"
+  accent: "#4a7a2c"
+  card: "#fbfdf9"
+  border: "#d5e0cd"

@@ -1,30 +1,31 @@
+---
+---
 /*
   style.css - how every page on the site looks.
   Every page links to this one file, so a change here changes the whole site.
-  build-site.py copies it to docs/assets/css/style.css when it builds the site.
-  Try changing a color below, run the build, and reload a page in your browser.
+
+  The two lines of dashes at the very top tell Jekyll to fill in the blanks
+  in this file (like the colors below) when it builds your site. Leave them
+  in. You don't need to edit this file to change colors: pick a theme or set
+  a color in _config.yml instead.
 */
 
-/* Colors and fonts used everywhere. Change these to restyle the site. */
-:root {
-  --background: #fdfbf7;
-  --text: #222222;
-  --muted: #666666;
-  --accent: #b5482a;
-  --card: #ffffff;
-  --border: #e4ded4;
-}
+{% comment %}
+  Pick the theme named by color_theme in _config.yml (from _data/themes.yml).
+  If the name is missing or misspelled, use the default theme. Then any
+  accent_color, background_color, or text_color in _config.yml wins over the
+  theme's color.
+{% endcomment %}
+{% assign theme = site.data.themes[site.color_theme] | default: site.data.themes.default %}
 
-/* Dark colors for people whose computer is set to dark mode. */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #1b1a18;
-    --text: #eeeae4;
-    --muted: #a9a49c;
-    --accent: #f08a5d;
-    --card: #262522;
-    --border: #3a3834;
-  }
+/* Colors used everywhere. They come from your theme in _config.yml. */
+:root {
+  --background: {{ site.background_color | default: theme.background }};
+  --text: {{ site.text_color | default: theme.text }};
+  --muted: {{ theme.muted }};
+  --accent: {{ site.accent_color | default: theme.accent }};
+  --card: {{ theme.card }};
+  --border: {{ theme.border }};
 }
 
 body {
@@ -124,15 +125,16 @@ h2 {
   color: var(--muted);
 }
 
-/* Writing pages: keep line breaks exactly as typed (good for poems). */
-.poem {
-  white-space: pre-line;
-  font-size: 1.15rem;
-}
-
-.prose {
+/* Writing pages: a comfortable reading width. */
+.writing {
   max-width: 680px;
   font-size: 1.1rem;
+}
+
+/* A poem (form: poem) keeps its line breaks exactly as typed. */
+.poem p {
+  white-space: pre-line;
+  font-size: 1.15rem;
 }
 
 footer {
@@ -141,3 +143,4 @@ footer {
   color: var(--muted);
   font-size: 0.9rem;
 }
+

@@ -1,0 +1,14 @@
+---
+layout: default
+---
+<!--
+  writing.html - the page for one piece of writing. Jekyll uses it for every
+  file in _writing/. The writing itself is whatever comes after the front
+  matter in that file.
+-->
+    <div class="writing {{ page.form }}">
+      <h2>{{ page.title }}</h2>
+      <p class="date">{{ page.date | date: "%B %Y" }}</p>
+
+{{ content }}
+    </div>

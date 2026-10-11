@@ -1,0 +1,76 @@
+# _config.yml - the settings for your whole website.
+#
+# This is the only file you need to edit to put your name on the site and
+# change its colors. GitHub Pages reads it every time you push and rebuilds
+# your site automatically (that's Jekyll, GitHub's built-in website builder).
+#
+# Lines starting with "#" are notes for you. Jekyll skips them.
+# If a value contains ": " (a colon then a space), wrap it in "double quotes".
+
+# Your name, shown at the top of every page.
+title: Your Name
+
+# A line about you, shown under your name on the home page.
+description: Art and writing. (Change this line to describe yourself.)
+
+# ---------------------------------------------------------------------------
+# COLORS
+# ---------------------------------------------------------------------------
+# Pick a color theme for the whole site. Change the word after the colon to
+# one of these, then commit and push:
+#
+#   default  - warm white page, dark text, brick-red links
+#   dark     - near-black page, light text, orange links
+#   warm     - soft peach page, brown text, deep orange links
+#   ocean    - pale blue page, navy text, teal links
+#   forest   - pale green page, dark green text, moss-green links
+#
+# (Each theme's colors are listed in _data/themes.yml. You can add your own
+# theme there too.)
+color_theme: default
+
+# Want to change just one color? Remove the "# " at the start of a line below
+# and put in your own color. Colors are written as a "#" and six letters or
+# digits (a hex code), in quotes. Search the web for "color picker" to find
+# the code for any color you like. These win over the theme's colors.
+#
+# accent_color: "#7b2cbf"      # links and highlights
+# background_color: "#fff8e7"  # the page background
+# text_color: "#1a1a1a"        # the main text
+
+# ---------------------------------------------------------------------------
+# HOW THE SITE IS BUILT (you normally don't need to change anything below)
+# ---------------------------------------------------------------------------
+
+# Your pieces. Each file in _art/ or _writing/ becomes its own page.
+collections:
+  art:
+    output: true
+    permalink: /art/:name/
+  writing:
+    output: true
+    permalink: /writing/:name/
+
+# Which page design each kind of piece uses, so you don't have to say it in
+# every file.
+defaults:
+  - scope:
+      type: art
+    values:
+      layout: art
+  - scope:
+      type: writing
+    values:
+      layout: writing
+
+# Show pieces even if their date is in the future (Jekyll hides them otherwise).
+future: true
+
+# Files and folders that are part of the repo but not part of the website.
+# source/ holds your full-size originals: the site shows the small copies in
+# assets/img/ instead, so pages load fast.
+exclude:
+  - source/
+  - README.md
+  - GETTING-STARTED.md
+  - resize-image.sh

@@ -1,0 +1,36 @@
+{% comment %}
+  default.html - the frame around every page: the header with your name, and
+  the footer. The page itself goes where it says {{ content }}.
+
+  Words in {{ double braces }} are blanks Jekyll fills in when it builds your
+  site: site.title comes from _config.yml, page.title from the page's own
+  file. "relative_url" makes a link work wherever GitHub puts your site.
+{% endcomment %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
+  <!-- One stylesheet controls how every page looks. -->
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+</head>
+<body>
+  <header>
+    <h1><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
+    {% if page.url == "/" %}
+    <p class="tagline">{{ site.description }}</p>
+    {% else %}
+    <p class="tagline"><a href="{{ '/' | relative_url }}">&larr; Back to all work</a></p>
+    {% endif %}
+  </header>
+
+  <main>
+{{ content }}
+  </main>
+
+  <footer>
+    <p>&copy; {{ site.time | date: "%Y" }} {{ site.title }} &middot; Published with GitHub Pages.</p>
+  </footer>
+</body>
+</html>

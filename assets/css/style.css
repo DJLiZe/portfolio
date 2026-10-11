@@ -75,6 +75,7 @@ h2 {
 
 /* A grid of cards on the home page. It fits as many columns as the screen allows. */
 .grid {
+  margin-top: 32px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 24px;
@@ -86,12 +87,6 @@ h2 {
   border: 1px solid var(--border);
   border-radius: 8px;
   overflow: hidden;
-  color: inherit;
-  text-decoration: none;
-}
-
-.card:hover {
-  border-color: var(--accent);
 }
 
 .card img {
@@ -109,32 +104,11 @@ h2 {
 }
 
 .card p {
-  margin: 0;
-  color: var(--muted);
-}
-
-/* Big image on an art page. It shrinks to fit small screens. */
-.artwork {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
+  margin: 0 0 8px;
 }
 
 .date {
   color: var(--muted);
-}
-
-/* Writing pages: a comfortable reading width. */
-.writing {
-  max-width: 680px;
-  font-size: 1.1rem;
-}
-
-/* A poem (form: poem) keeps its line breaks exactly as typed. */
-.poem p {
-  white-space: pre-line;
-  font-size: 1.15rem;
 }
 
 footer {

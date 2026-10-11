@@ -19,7 +19,8 @@ build script or workflow file to look after.
 - **Art:** run `./resize-image.sh` once on your new image (it makes a small
   web copy), add a short file to `_art/`, commit, push. That one command is
   the only manual step. The home page shows every piece (image, title, date,
-  description) on one page.
+  description) on one page, grouped into sections by each piece's
+  `category:` (like School Projects or Cards).
 - **Colors:** change `color_theme:` in `_config.yml` to `default`, `dark`,
   `warm`, `ocean`, or `forest`, or set a single color like `accent_color:`.
   No CSS needed.
@@ -31,7 +32,7 @@ The site is live a minute or two after each push.
 | Path | What it holds |
 | --- | --- |
 | `_config.yml` | Your name, your tagline, and your color theme. The main file you edit. |
-| `_art/` | One short file per art piece: title, date, description, and which image to show. |
+| `_art/` | One short file per art piece: title, date, category, description, and which image to show. |
 | `assets/img/` | The small web copies of your art, made by `resize-image.sh`. |
 | `source/art/` | Your original, full-quality art files. Kept safe in git, not shown on the site. |
 | `resize-image.sh` | Makes a web-sized copy of an image (on a Mac) and puts it in `assets/img/`. |

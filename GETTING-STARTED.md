@@ -226,6 +226,7 @@ dashes are the piece's details. That's called **front matter**:
 ---
 title: Morning Bus
 date: 2026-09-10
+category: School Projects
 description: A pencil sketch of the ride to school.
 image: /assets/img/morning-bus.jpg
 alt: A pencil sketch of a yellow school bus at a stop, kids lining up.
@@ -253,6 +254,17 @@ make a small web copy first. It's one command.
    paste in what the script printed. Change the values. `image:` is the web
    copy the script made. `alt:` is a short description of the picture for
    people who can't see it.
+
+   Then add one more line under `date:` to say which section of the home
+   page the piece goes in, for example:
+   ```
+   category: Cards
+   ```
+   Use any name you like (`School Projects`, `Cards`, `Sketchbook`...). Every
+   piece with the same category shows up together under that heading, so
+   spell it the same way each time (capital letters count: `cards` and
+   `Cards` would be two different sections). If you leave `category:` out,
+   the piece still shows up, in a section called **Other** at the bottom.
 4. **Commit and push** (this sends the original, the web copy, and the new
    file together):
    ```sh
@@ -261,8 +273,8 @@ make a small web copy first. It's one command.
    git push
    ```
 
-The piece shows up on the home page by itself, with its image, title, date,
-and description. There's no separate page for each piece: the home page is
+The piece shows up on the home page by itself, under its category's heading,
+with its image, title, date, and description. There's no separate page for each piece: the home page is
 the whole site, and it shows everything.
 
 ### What about writing?
@@ -370,5 +382,5 @@ worry, git still has them in your history if you ever want them back.
 | branch | A line of history. You only need `main` for now. |
 | GitHub Pages | GitHub's free website hosting. |
 | Jekyll | The website builder built into GitHub Pages. It turns your files into web pages every time you push. |
-| front matter | The lines between two `---` at the top of a file in `_art/`: the piece's title, date, image, and other details. |
+| front matter | The lines between two `---` at the top of a file in `_art/`: the piece's title, date, category, image, and other details. |
 | hex color | A color written as `#` plus six letters or digits, like `#b5482a`. Any color picker on the web shows them. |

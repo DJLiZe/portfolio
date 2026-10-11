@@ -43,7 +43,7 @@ color_theme: ocean
 # ---------------------------------------------------------------------------
 
 # Your art pieces. Each file in _art/ describes one piece (its title, date,
-# description, and image). "output: false" means the pieces don't get pages
+# category, description, and image). "output: false" means the pieces don't get pages
 # of their own: the home page reads them all and shows every one directly.
 collections:
   art:

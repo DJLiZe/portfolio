@@ -105,7 +105,7 @@ this folder". `--exclude .git` skips the starter kit's own hidden git history,
 so your repo starts fresh with your history.)
 
 Check it worked. You should see `README.md`, `GETTING-STARTED.md`,
-`_config.yml`, `index.html`, `source`, and the other files:
+`_config.yml`, `index.html`, `assets`, and the other files:
 
 ```sh
 ls -a
@@ -255,7 +255,8 @@ Art needs one extra step, because big image files make websites slow: you
 make a small web copy first. It's one command.
 
 1. **Save the original** in `source/art/`, full quality, for example
-   `source/art/self-portrait.png`.
+   `source/art/self-portrait.png`. (The first time, make the folder with
+   `mkdir -p source/art`. Git ignores it, so it isn't in a fresh copy.)
 2. **Make the web copy:**
    ```sh
    ./resize-image.sh source/art/self-portrait.png
@@ -282,8 +283,9 @@ make a small web copy first. It's one command.
    the same way each time (capital letters count: `cards` and `Cards` would
    be two different sections). If you delete the `category:` line, the piece
    still shows up, in a section called **Other** at the bottom.
-4. **Commit and push** (this sends the original, the web copy, and the
-   updated list together):
+4. **Commit and push** (this sends the web copy and the updated list
+   together; the original in `source/art/` stays on your Mac, because git
+   ignores that folder):
    ```sh
    git add .
    git commit -m "Add self-portrait"
@@ -362,8 +364,8 @@ some setup, so skip it for now.
 
 When you have your own pieces, remove the examples: delete the three
 `(EXAMPLE)` entries from `_data/art.yml` (from each `- title:` line down to
-its `alt:` line), and delete the files named `example-...` in `assets/img/`
-and `source/art/`. Then commit and push. They disappear from the home page on the next build. Don't
+its `alt:` line), and delete the files named `example-...` in `assets/img/`.
+Then commit and push. They disappear from the home page on the next build. Don't
 worry, git still has them in your history if you ever want them back.
 
 ---
@@ -371,10 +373,14 @@ worry, git still has them in your history if you ever want them back.
 ## How this template is put together (and why)
 
 - **Two copies of every artwork.** The full-quality original lives in
-  `source/art/`, safely versioned in git. The website only shows the smaller
-  copy in `assets/img/`, so pages load fast. Your repo is public, so the
-  originals can still be downloaded from GitHub. Keep anything private out of
-  this repo.
+  `source/art/`, **on your Mac only**. `source/` is listed in `.gitignore`, so
+  git never saves it and it is never uploaded to GitHub. The smaller,
+  compressed copy in `assets/img/` is what the website shows (so pages load
+  fast), and that copy is what git saves and GitHub backs up. **Git and GitHub
+  don't back up your originals**, so keep your own copy of `source/` somewhere
+  safe, like iCloud Drive, Google Drive, or an external disk. Your repo is
+  public, so anything that is pushed (including the web copies) can be
+  downloaded by anyone. Keep anything private out of it.
 - **The website is built, not hand-written.** You keep the real things (your
   pieces and `_config.yml`) in git. Jekyll, built into GitHub Pages, turns
   them into the website on every push. So adding a piece is a few new lines
@@ -396,8 +402,8 @@ worry, git still has them in your history if you ever want them back.
   `source/` and the guides are left out on purpose (see `exclude:` in
   `_config.yml`).
 - **Very large files.** GitHub warns about files over 50 MB and rejects files
-  over 100 MB. Most art scans and photos are well under that. If yours aren't,
-  save a slightly smaller "master" copy in `source/`.
+  over 100 MB. Your originals in `source/` are never pushed, so their size
+  doesn't matter. The web copies in `assets/img/` are always small.
 
 ## Words you'll see
 

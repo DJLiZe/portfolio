@@ -4,8 +4,11 @@
 #
 # WHY THIS EXISTS
 #   Your original art in source/art/ stays at full quality: that's the "real
-#   thing", safely saved in git. Big originals load slowly on a website,
-#   though, so the website shows a smaller, compressed copy from assets/img/.
+#   thing". It stays on your Mac only: source/ is listed in .gitignore, so git
+#   never saves it or sends it to GitHub. Keep your own backup of it (iCloud
+#   Drive, Google Drive, an external disk...). Big originals load slowly on a
+#   website anyway, so the website shows a smaller, compressed copy from
+#   assets/img/, and that copy is what git saves and GitHub publishes.
 #   This script makes that copy for you. It's the one step GitHub can't do for
 #   you: run it once each time you add a new piece of art.
 #

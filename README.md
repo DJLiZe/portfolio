@@ -20,7 +20,7 @@ build script or workflow file to look after.
   web copy), add a few lines for it to `_data/art.yml`, commit, push. That one command is
   the only manual step. The home page shows every piece (image, title, date,
   description) on one page, grouped into sections by each piece's
-  `category:` (like School Projects or Cards).
+  `category:` (like Mosaics or Cards).
 - **Colors:** change `color_theme:` in `_config.yml` to `default`, `dark`,
   `warm`, `ocean`, or `forest`, or set a single color like `accent_color:`.
   No CSS needed.
@@ -34,7 +34,7 @@ The site is live a minute or two after each push.
 | `_config.yml` | Your name, your tagline, and your color theme. The main file you edit. |
 | `_data/art.yml` | The list of your art pieces, a few lines each: title, date, category, description, and which image to show. |
 | `assets/img/` | The small web copies of your art, made by `resize-image.sh`. |
-| `source/art/` | Your original, full-quality art files. Kept safe in git, not shown on the site. |
+| `source/art/` | Your original, full-quality art files. On your Mac only: ignored by git (see `.gitignore`), so never uploaded. Back them up yourself. |
 | `resize-image.sh` | Makes a web-sized copy of an image (on a Mac) and puts it in `assets/img/`. |
 | `index.html` | The home page, and the only page. Shows every piece in `_data/art.yml`. |
 | `_layouts/`, `_includes/` | The page frame, and the box drawn for each piece on the home page. |

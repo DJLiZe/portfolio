@@ -63,3 +63,4 @@ exclude:
   - README.md
   - GETTING-STARTED.md
   - resize-image.sh
+  - TODO.md

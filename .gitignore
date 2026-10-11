@@ -8,3 +8,9 @@ _site/
 .jekyll-cache/
 .jekyll-metadata
 .sass-cache/
+
+# Your full-size original art. It stays on your Mac only and is never sent to
+# GitHub (your repo is public, so anything pushed there can be downloaded).
+# Only the small web copies in assets/img/ are saved in git. Keep your own
+# backup of source/ somewhere else, like iCloud Drive or Google Drive.
+source/

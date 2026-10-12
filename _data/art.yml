@@ -18,6 +18,12 @@
 # If a value has a colon and a space in it (like "Part 1: Home"), wrap the
 # whole value in "double quotes".
 
+- title: "Thank You: Dimensional"
+  category: Cards
+  description: Mixed media on paper. 2025
+  image: /assets/img/geo.jpg
+  alt: A fan of six handmade greeting cards on a red background, each with the word THANK or THANK YOU drawn in a 3D bubble-block lettering style in different color schemes - green, teal, purple, navy, red, and the front card in purple and orange with doodled circles.
+  
 - title: Birthday Card
   category: Cards
   description: Marker and ballpoint pen on paper. 2024
@@ -35,12 +41,6 @@
   description: Glass and tile mosaic on chipboard. 2025
   image: /assets/img/bluebonnet.jpg
   alt: Mosaic artwork of bluebonnet flowers made from pieces of blue, black, and dark green glass tile, set against a grid of grey and sage-green background tiles.
-
-- title: "Thank You: Dimensional"
-  category: Cards
-  description: Mixed media on paper. 2025
-  image: /assets/img/geo.jpg
-  alt: A fan of six handmade greeting cards on a red background, each with the word THANK or THANK YOU drawn in a 3D bubble-block lettering style in different color schemes - green, teal, purple, navy, red, and the front card in purple and orange with doodled circles.
 
 - title: "Thank You: Tulips"
   category: Cards

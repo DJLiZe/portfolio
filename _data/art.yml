@@ -18,6 +18,12 @@
 # If a value has a colon and a space in it (like "Part 1: Home"), wrap the
 # whole value in "double quotes".
 
+- title: Birthday Card
+  category: Cards
+  description: Marker and ballpoint pen on paper. 2024
+  image: /assets/img/happy-birthday-card.jpg
+  alt: A card reading "Wishing you a very Happy Birthday" in teal brush lettering, surrounded by green watercolor dots and swirls, with a bright green strip along the right edge.
+  
 - title: Ombré Block Printing 
   category: School Projects
   description: Original design. Ink on paper. 2024
@@ -90,12 +96,6 @@
   description: Designed, drawn, and painted by Darcy Jones. Carving done by a relative. Gold ink on sapele mahogany. 2024
   image: /assets/img/house-number-64.jpg
   alt: The numbers "64" painted in flowing gold script on a reddish-brown stained wood panel, held against light gray house siding.
-
-- title: Birthday Card
-  category: Cards
-  description: Marker and ballpoint pen on paper. 2024
-  image: /assets/img/happy-birthday-card.jpg
-  alt: A card reading "Wishing you a very Happy Birthday" in teal brush lettering, surrounded by green watercolor dots and swirls, with a bright green strip along the right edge.
 
 - title: "Thank You: Color Waves"
   category: Cards

@@ -18,6 +18,12 @@
 # If a value has a colon and a space in it (like "Part 1: Home"), wrap the
 # whole value in "double quotes".
 
+- title: J in the Cadel style
+  category: Cards
+  description: Calligraphy marker on Bristol. 2026
+  image: /assets/img/calligraphy-study.jpg
+  alt: A large stylized capital J rendered in bold dark teal ink with sharp zigzag edges and curling flourishes, over a soft purple-to-peach gradient background, signed Darcy in the corner.
+
 - title: "Thank You: Dimensional"
   category: Cards
   description: Mixed media on paper. 2025
@@ -113,12 +119,6 @@
   description: From Shakespeare, 11th grade. 2025
   image: /assets/img/ode-to-chocolate.jpg
   alt: A page titled "An Ode to Chocolate" with a handwritten poem in blue ink praising chocolate, bordered in a red-to-peach wash and illustrated with three painted chocolate truffles at the bottom.
-
-- title: J in the Cadel style
-  category: Cards
-  description: Calligraphy marker on Bristol. 2026
-  image: /assets/img/calligraphy-study.jpg
-  alt: A large stylized capital J rendered in bold dark teal ink with sharp zigzag edges and curling flourishes, over a soft purple-to-peach gradient background, signed Darcy in the corner.
 
 - title: Eastern Hemlock Study
   category: Main Lesson Pages (a requisite of Waldorf education)

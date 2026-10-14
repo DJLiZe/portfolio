@@ -102,18 +102,6 @@
   image: /assets/img/house-number-64.jpg
   alt: The numbers "64" painted in flowing gold script on a reddish-brown stained wood panel, held against light gray house siding.
 
-- title: "Thank You: Color Waves"
-  category: Cards
-  description: Watercolor pen and ink on paper. 2025
-  image: /assets/img/thank-you-waves-card.jpg
-  alt: A Thank You card with black hand lettering in the center, framed by wavy retro-style bands of pink, orange, yellow, and blue watercolor.
-
-- title: Replica of a Laquer Winged Cup (Warring States Period, China)
-  category: School Projects
-  description: Modge podge on acrylic on clay. 2025
-  image: /assets/img/scrollwork-bowl.jpg
-  alt: An oval ceramic dish with a scalloped black rim, painted in red, black, and white with four stylized swirling birds arranged around a small central flower.
-
 - title: "Sonnet: An Ode to Chocolate"
   category: Main Lesson Pages (a requisite of Waldorf education)
   description: From Shakespeare, 11th grade. 2025
@@ -131,3 +119,16 @@
   description: From Shakespeare, 11th grade. 2025
   image: /assets/img/willow-cabin.jpg
   alt: A handwritten page of Shakespeare's Twelfth Night speech beginning "Make me a willow cabin at your gate," with an illuminated capital M decorated with red roses and a border of painted willow branches down each side.
+- title: "Thank You: Color Waves"
+  category: Cards
+  description: Watercolor pen and ink on paper. 2025
+  image: /assets/img/thank-you-waves-card.jpg
+  alt: A Thank You card with black hand lettering in the center, framed by wavy retro-style bands of pink, orange, yellow, and blue watercolor.
+
+- title: Replica of a Laquer Winged Cup (Warring States Period, China)
+  category: School Projects
+  description: Modge podge on acrylic on clay. 2025
+  image: /assets/img/scrollwork-bowl.jpg
+  alt: An oval ceramic dish with a scalloped black rim, painted in red, black, and white with four stylized swirling birds arranged around a small central flower.
+
+

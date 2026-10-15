@@ -13,6 +13,9 @@ title: My Art
 # A line about you, shown under your name on the home page.
 description: Showcasing works by Darcy Jones
 
+# Your name, shown in the copyright line at the bottom of every page.
+author: Darcy Jones
+
 # ---------------------------------------------------------------------------
 # COLORS
 # ---------------------------------------------------------------------------

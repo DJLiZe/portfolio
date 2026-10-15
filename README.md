@@ -40,6 +40,7 @@ The site is live a minute or two after each push.
 | `_layouts/`, `_includes/` | The page frame, and the box drawn for each piece on the home page. |
 | `_data/themes.yml` | The colors for each theme. Add your own theme here if you like. |
 | `assets/css/style.css` | Fonts and layout. Colors come from `_config.yml`, so you don't need to edit this. |
+| `assets/js/lightbox.js` | Lets visitors click a picture to see all of it, bigger. Works for every piece by itself. |
 
 There's nothing to install. GitHub builds the site, and `resize-image.sh`
 uses an image tool that comes with macOS.
